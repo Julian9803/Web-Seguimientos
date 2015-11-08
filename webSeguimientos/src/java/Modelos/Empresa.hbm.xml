@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/11/2015 08:28:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Empresa" table="empresa" catalog="seguimientos" optimistic-lock="version">
+        <id name="idEmpresa" type="java.lang.Integer">
+            <column name="idEmpresa" />
+            <generator class="identity" />
+        </id>
+        <property name="razonSocial" type="string">
+            <column name="Razon_Social" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="45" not-null="true" />
+        </property>
+        <property name="nit" type="long">
+            <column name="NIT" not-null="true" />
+        </property>
+        <property name="telefono" type="long">
+            <column name="Telefono" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <set name="contratoses" table="contratos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmpresa" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Contratos" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/11/2015 08:28:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Contratos" table="contratos" catalog="seguimientos" optimistic-lock="version">
+        <id name="idContratos" type="java.lang.Integer">
+            <column name="idContratos" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresa" class="Modelos.Empresa" fetch="select">
+            <column name="idEmpresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Modelos.Usuario" fetch="select">
+            <column name="aprendiz" not-null="true" />
+        </many-to-one>
+        <property name="jefeInmediato" type="string">
+            <column name="jefeInmediato" length="45" not-null="true" />
+        </property>
+        <property name="cargoJefe" type="string">
+            <column name="cargoJefe" length="20" not-null="true" />
+        </property>
+        <property name="fechaInicial" type="date">
+            <column name="fechaInicial" length="10" not-null="true" />
+        </property>
+        <property name="fechaFinal" type="date">
+            <column name="fechaFinal" length="10" not-null="true" />
+        </property>
+        <property name="sede" type="string">
+            <column name="sede" length="45" not-null="true" />
+        </property>
+        <property name="tipoContrato" type="string">
+            <column name="tipoContrato" length="33" not-null="true" />
+        </property>
+        <property name="programa" type="string">
+            <column name="programa" length="80" not-null="true" />
+        </property>
+        <property name="ficha" type="int">
+            <column name="ficha" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="10" not-null="true" />
+        </property>
+        <set name="seguimientoses" table="seguimientos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idContratos" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Seguimientos" />
+        </set>
+    </class>
+</hibernate-mapping>

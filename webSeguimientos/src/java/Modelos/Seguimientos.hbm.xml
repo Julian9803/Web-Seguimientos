@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/11/2015 08:28:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Seguimientos" table="seguimientos" catalog="seguimientos" optimistic-lock="version">
+        <id name="idSeguimientos" type="java.lang.Integer">
+            <column name="idSeguimientos" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="contratos" class="Modelos.Contratos" fetch="select">
+            <column name="idContratos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Modelos.Usuario" fetch="select">
+            <column name="instructor" not-null="true" />
+        </many-to-one>
+        <property name="numero" type="int">
+            <column name="numero" not-null="true" />
+        </property>
+        <property name="fechaSeguimiento" type="date">
+            <column name="fechaSeguimiento" length="10" not-null="true" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="45" not-null="true" />
+        </property>
+        <property name="tipoInforme" type="string">
+            <column name="tipoInforme" length="8" not-null="true" />
+        </property>
+        <property name="fechaInicialPeriodo" type="date">
+            <column name="fechaInicialPeriodo" length="10" not-null="true" />
+        </property>
+        <property name="fechaFinalPeriodo" type="date">
+            <column name="fechaFinalPeriodo" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/11/2015 08:28:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Usuario" table="usuario" catalog="seguimientos" optimistic-lock="version">
+        <id name="idUsuarios" type="java.lang.Integer">
+            <column name="idUsuarios" />
+            <generator class="identity" />
+        </id>
+        <property name="nombres" type="string">
+            <column name="Nombres" length="60" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="Apellidos" length="60" not-null="true" />
+        </property>
+        <property name="numeroDocumento" type="long">
+            <column name="NumeroDocumento" not-null="true" />
+        </property>
+        <property name="telefono" type="long">
+            <column name="Telefono" not-null="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="Correo" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="50" not-null="true" />
+        </property>
+        <property name="tipoUsuario" type="string">
+            <column name="TipoUsuario" length="11" not-null="true" />
+        </property>
+        <property name="user" type="string">
+            <column name="User" length="45" />
+        </property>
+        <property name="pass" type="string">
+            <column name="Pass" length="45" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <set name="seguimientoses" table="seguimientos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="instructor" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Seguimientos" />
+        </set>
+        <set name="contratoses" table="contratos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="aprendiz" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Contratos" />
+        </set>
+    </class>
+</hibernate-mapping>
